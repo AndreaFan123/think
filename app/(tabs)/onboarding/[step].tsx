@@ -1,46 +1,59 @@
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Text,
   SafeAreaView,
   TouchableOpacity,
-  StyleSheet,
+  Image,
 } from "react-native";
-import { useRouter, useLocalSearchParams, Stack } from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
 
 const ONBOARDING_STEPS = [
   {
     id: "1",
-    title: "不只看你感興趣的",
+    title: "Read out aloud",
     description:
-      "為了提升你的表達能力，我們會呈現各類主題的文章，而不只是你平常關注的內容。",
-    cta: "好的，我願意挑戰",
+      "Research shows that reading out loud can help improve your English pronunciation.",
+    cta: "Yes, I'm ready!",
+    image: (
+      <Image
+        source={require("@/assets/images/onboarding/speaking.png")}
+        className="w-[350px] h-[350px] self-center"
+      />
+    ),
   },
   {
     id: "2",
-    title: "自在表達",
-    description: "不要在意口音，也不要在意文法，重要的是勇於表達你的想法。",
-    cta: "敢說就會進步，請繼續",
+    title: "Don't be afraid",
+    description:
+      "Don't be afraid to make mistakes. The more you speak, the better you'll get.",
+    cta: "Let's do this",
+    image: (
+      <Image
+        source={require("@/assets/images/onboarding/running.png")}
+        className="w-[350px] h-[350px] self-center"
+      />
+    ),
   },
   {
     id: "3",
-    title: "限時體驗",
+    title: "Daily practice, no pressure",
     description:
-      "非會員每次錄音僅有30秒時間，僅能使用AI建議3次。請在閱讀完文章後，好好組織想法再開始錄音。",
-    cta: "沒問題，我會讀完後思考再說",
-  },
-  {
-    id: "4",
-    title: "珍惜機會",
-    description: "每一天只有一次挑戰機會，好好把握今天的學習時刻。",
-    cta: "開始挑戰",
+      "Record yourself reading a short passage every day. You can listen to it and see how you improve over time.",
+    cta: "Let's Go",
+    image: (
+      <Image
+        source={require("@/assets/images/onboarding/exploring.png")}
+        className="w-[350px] h-[350px] self-center"
+      />
+    ),
   },
 ];
 export default function OnboardingStep() {
   const router = useRouter();
   const { step } = useLocalSearchParams();
-
   const stepId = typeof step === "string" ? step : "1";
   const currentStep =
     ONBOARDING_STEPS.find((step) => step.id === stepId) || ONBOARDING_STEPS[0];
@@ -55,22 +68,38 @@ export default function OnboardingStep() {
     }
   };
   return (
-    <SafeAreaView>
-      <StatusBar style="dark" />
-      <View>
-        <View>
-          {ONBOARDING_STEPS.map((step, index) => (
-            <View key={index} />
-          ))}
+    <SafeAreaProvider>
+      <SafeAreaView className="bg-white">
+        <StatusBar style="dark" />
+        <View className="px-4 w-full max-w-full flex flex-col h-full justify-center">
+          <View>
+            {ONBOARDING_STEPS.map((step, index) => (
+              <View key={index} />
+            ))}
+          </View>
+          <View>
+            <View>{currentStep.image}</View>
+            <View className="flex flex-col mt-11 gap-7">
+              <View className="flex flex-col items-center gap-2">
+                <Text className="text-4xl font-bold text-indigo-800">
+                  {currentStep.title}
+                </Text>
+                <Text className="text-xl text-center text-indigo-800">
+                  {currentStep.description}
+                </Text>
+              </View>
+              <TouchableOpacity
+                onPress={handleNext}
+                className="bg-indigo-700 rounded-full"
+              >
+                <Text className="text-white text-xl font-medium p-4 text-center">
+                  {currentStep.cta}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-        <View>
-          <Text>{currentStep.title}</Text>
-          <Text>{currentStep.description}</Text>
-        </View>
-        <TouchableOpacity onPress={handleNext}>
-          <Text>{currentStep.cta}</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
