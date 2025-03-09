@@ -61,7 +61,7 @@ export default function OnboardingStep() {
 
   const handleNext = () => {
     if (stepIndex === ONBOARDING_STEPS.length - 1) {
-      router.replace("/login");
+      router.replace("/auth");
     } else {
       const nextStepId = ONBOARDING_STEPS[stepIndex + 1].id;
       router.push(`/onboarding/${nextStepId}`);
@@ -91,7 +91,7 @@ export default function OnboardingStep() {
               </View>
               <TouchableOpacity
                 onPress={handleNext}
-                className="bg-indigo-700 rounded-full"
+                className="bg-indigo-700 rounded-2xl"
               >
                 <Text className="text-white text-xl font-medium p-4 text-center">
                   {currentStep.cta}
