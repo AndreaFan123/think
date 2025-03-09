@@ -39,9 +39,9 @@ const ONBOARDING_STEPS = [
   },
   {
     id: "3",
-    title: "Daily practice, no pressure",
+    title: "Daily Challenge, no pressure",
     description:
-      "Record yourself reading a short passage every day. You can listen to it and see how you improve over time.",
+      "Record yourself reading a short article every day. You can listen to it and see how you improve over time.",
     cta: "Let's Go",
     image: (
       <Image
@@ -61,12 +61,13 @@ export default function OnboardingStep() {
 
   const handleNext = () => {
     if (stepIndex === ONBOARDING_STEPS.length - 1) {
-      router.replace("/(tabs)");
+      router.replace("/auth");
     } else {
       const nextStepId = ONBOARDING_STEPS[stepIndex + 1].id;
       router.push(`/onboarding/${nextStepId}`);
     }
   };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView className="bg-white">
@@ -81,7 +82,7 @@ export default function OnboardingStep() {
             <View>{currentStep.image}</View>
             <View className="flex flex-col mt-11 gap-7">
               <View className="flex flex-col items-center gap-2">
-                <Text className="text-4xl font-bold text-indigo-800">
+                <Text className="text-3xl font-bold text-indigo-800">
                   {currentStep.title}
                 </Text>
                 <Text className="text-xl text-center text-indigo-800">
@@ -90,7 +91,7 @@ export default function OnboardingStep() {
               </View>
               <TouchableOpacity
                 onPress={handleNext}
-                className="bg-indigo-700 rounded-full"
+                className="bg-indigo-700 rounded-2xl"
               >
                 <Text className="text-white text-xl font-medium p-4 text-center">
                   {currentStep.cta}
