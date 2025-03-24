@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Alert, View, TextInput, TouchableOpacity, Text } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
-import Feather from "@expo/vector-icons/Feather";
-
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { supabase } from "@/lib/supabase";
 
 export default function Login() {
@@ -33,29 +31,9 @@ export default function Login() {
     setLoading(false);
   }
 
-  async function signUpWithEmail() {
-    setLoading(true);
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
-
-    if (error) {
-      Alert.alert(error.message);
-      return;
-    }
-    if (session) {
-      router.push("/");
-    }
-    setLoading(false);
-  }
-
   return (
     <View className="w-full z-20 relative px-6 max-w-full bg-white min-h-screen flex gap-7 flex-col items-center justify-center">
-      <Text className="font-bold text-indigo-800 text-4xl mb-3">
+      <Text className="font-bold text-indigo-800 text-3xl mb-3">
         Welcome Back! Login 🚀
       </Text>
       <View className="w-full flex flex-col gap-1">
@@ -98,16 +76,10 @@ export default function Login() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View className="w-full max-w-full">
-        <TouchableOpacity
-          disabled={loading}
-          onPress={() => signUpWithEmail()}
-          className="bg-indigo-700 rounded-2xl"
-        >
-          <Text className="text-white text-xl font-medium p-4 text-center">
-            Sing Up
-          </Text>
-        </TouchableOpacity>
+      <View>
+        <Link className="text-lg text-[#3c32cb] font-medium" href="/register">
+          Not a member? Register Here!
+        </Link>
       </View>
     </View>
   );

@@ -61,7 +61,7 @@ export default function OnboardingStep() {
 
   const handleNext = () => {
     if (stepIndex === ONBOARDING_STEPS.length - 1) {
-      router.replace("/auth");
+      router.replace("/login");
     } else {
       const nextStepId = ONBOARDING_STEPS[stepIndex + 1].id;
       router.push(`/onboarding/${nextStepId}`);

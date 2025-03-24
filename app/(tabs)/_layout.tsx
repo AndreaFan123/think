@@ -1,12 +1,13 @@
-import { Stack } from "expo-router";
+import React from "react";
+import { Tabs } from "expo-router";
+import TabBar from "@/components/TabBar";
 
-export default function OnboardingLayout() {
+export default function TabLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        animation: "slide_from_right",
-      }}
-    />
+    <Tabs tabBar={(props) => <TabBar {...props} />}>
+      <Tabs.Screen name="index" options={{ title: "Home" }} />
+      <Tabs.Screen name="challenges" options={{ title: "Challenges" }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile" }} />
+    </Tabs>
   );
 }

@@ -2,7 +2,7 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert } from "react-native";
-import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import { Text, SafeAreaView, TouchableOpacity } from "react-native";
 
 export default function HomeScreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function HomeScreen() {
     if (error) {
       Alert.alert("Logout error");
     } else {
-      router.replace("/auth");
+      router.replace("/login");
     }
     setIsLoading(false);
   }
