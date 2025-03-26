@@ -63,11 +63,11 @@ export default function TabBar({
             style={styles.tabbarItem}
           >
             {routeIcon[route.name as keyof typeof routeIcon]({
-              color: isFocused ? "#4228d7" : "#272727",
+              color: isFocused ? "#000000" : "#5f5f5f",
             })}
             <Text
               style={{
-                color: isFocused ? "#4228d7" : "#272727",
+                color: isFocused ? "#000000" : "#5f5f5f",
                 fontWeight: isFocused ? "700" : "400",
               }}
             >

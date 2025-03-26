@@ -82,16 +82,16 @@ export default function OnboardingStep() {
             <View>{currentStep.image}</View>
             <View className="flex flex-col mt-11 gap-7">
               <View className="flex flex-col items-center gap-2">
-                <Text className="text-3xl font-bold text-indigo-800">
+                <Text className="text-3xl font-bold text-black">
                   {currentStep.title}
                 </Text>
-                <Text className="text-xl text-center text-indigo-800">
+                <Text className="text-xl text-center text-black">
                   {currentStep.description}
                 </Text>
               </View>
               <TouchableOpacity
                 onPress={handleNext}
-                className="bg-indigo-700 rounded-2xl"
+                className="bg-black rounded-2xl"
               >
                 <Text className="text-white text-xl font-medium p-4 text-center">
                   {currentStep.cta}
