@@ -13,10 +13,10 @@ import { StatusBar } from "expo-status-bar";
 const ONBOARDING_STEPS = [
   {
     id: "1",
-    title: "Read out aloud",
+    title: "大聲閱讀",
     description:
-      "Research shows that reading out loud can help improve your English pronunciation.",
-    cta: "Yes, I'm ready!",
+      "研究顯示，大聲閱讀並重覆練習將有助於提升英文的敏感度。你準備好了嗎？",
+    cta: "我準備好了！",
     image: (
       <Image
         source={require("@/assets/images/onboarding/speaking.png")}
@@ -26,10 +26,9 @@ const ONBOARDING_STEPS = [
   },
   {
     id: "2",
-    title: "Don't be afraid",
-    description:
-      "Don't be afraid to make mistakes. The more you speak, the better you'll get.",
-    cta: "Let's do this",
+    title: "不要害怕或擔心",
+    description: "唸錯或唸得不好聽？只要持續練習，一定會有所進步！",
+    cta: "Let's Go",
     image: (
       <Image
         source={require("@/assets/images/onboarding/running.png")}
@@ -39,10 +38,9 @@ const ONBOARDING_STEPS = [
   },
   {
     id: "3",
-    title: "Daily Challenge, no pressure",
-    description:
-      "Record yourself reading a short article every day. You can listen to it and see how you improve over time.",
-    cta: "Let's Go",
+    title: "每日挑戰，不要有壓力",
+    description: "將你的練習錄下來，你將會看到自己的進步",
+    cta: "開始挑戰",
     image: (
       <Image
         source={require("@/assets/images/onboarding/exploring.png")}
@@ -82,16 +80,16 @@ export default function OnboardingStep() {
             <View>{currentStep.image}</View>
             <View className="flex flex-col mt-11 gap-7">
               <View className="flex flex-col items-center gap-2">
-                <Text className="text-3xl font-bold text-indigo-800">
+                <Text className="text-3xl font-bold text-black">
                   {currentStep.title}
                 </Text>
-                <Text className="text-xl text-center text-indigo-800">
+                <Text className="text-xl text-center text-black">
                   {currentStep.description}
                 </Text>
               </View>
               <TouchableOpacity
                 onPress={handleNext}
-                className="bg-indigo-700 rounded-2xl"
+                className="bg-black rounded-2xl"
               >
                 <Text className="text-white text-xl font-medium p-4 text-center">
                   {currentStep.cta}
